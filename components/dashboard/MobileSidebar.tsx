@@ -1,15 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import {
-  Home,
-  LineChart,
-  Menu,
-  Package,
-  Package2,
-  ShoppingCart,
-  Users,
-} from "lucide-react"
+import { Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
