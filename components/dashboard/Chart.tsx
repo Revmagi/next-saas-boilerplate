@@ -30,17 +30,16 @@ const chartConfig = {
   
 } satisfies ChartConfig
 
-const Chart =() => {
+const Chart = () => {
   const totalSubscribers = React.useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.subscribers, 0)
-  }, [])
+  }, []);
 
   const currentDate = new Date();
   const formattedDate = currentDate.toLocaleString("default",{
     month: "long",
     year: "numeric",
-  })
-  .replace(" ",", ");
+  }).replace(" ", ", ");
 
 
   return (
