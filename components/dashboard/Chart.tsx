@@ -26,9 +26,7 @@ const chartData = [
 
 ]
 
-const chartConfig = {
-  
-} satisfies ChartConfig
+const chartConfig = {} satisfies ChartConfig
 
 const Chart = () => {
   const totalSubscribers = React.useMemo(() => {
