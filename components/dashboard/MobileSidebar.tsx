@@ -4,24 +4,21 @@ import Link from "next/link"
 import { Menu } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-
 
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Logo from "../blocks/Logo"
-import { adminSidebarLinks } from "@/config/menu-config"
+import { adminSidebarLinks, userSidebarLinks } from "@/config/menu-config"
 import { usePathname } from "next/navigation"
 import { useState } from "react"
 
-const MobileSidebar = () => {
+type MobileSideBarProps = {
+  isAdminMode?: boolean;
+};
+
+const MobileSidebar = ({ isAdminMode}: MobileSideBarProps) => {
   const pathName = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const links = isAdminMode ? adminSidebarLinks : userSidebarLinks
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -39,7 +36,7 @@ const MobileSidebar = () => {
       <nav className="grid gap-2 text-lg font-medium">
         <Logo />
        
-        {adminSidebarLinks.map (({label, icon, url}, i) => {
+        {links.map (({label, icon, url}, i) => {
             const Icon = icon;
             return (
                 <Link
@@ -55,22 +52,7 @@ const MobileSidebar = () => {
           })}  
 
       </nav>
-      <div className="mt-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle>Upgrade to Pro</CardTitle>
-            <CardDescription>
-              Unlock all features and get unlimited access to our
-              support team.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button size="sm" className="w-full">
-              Upgrade
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+
     </SheetContent>
   </Sheet>
   )

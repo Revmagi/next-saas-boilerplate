@@ -1,21 +1,17 @@
 "use client";
 
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import Logo from "../blocks/Logo"
-import { adminSidebarLinks } from "@/config/menu-config"
+import { adminSidebarLinks, userSidebarLinks } from "@/config/menu-config"
 import { usePathname } from "next/navigation"
 
+type SideBarProps = {
+  isAdminMode?: boolean;
+};
 
-const Sidebar = () => {
+const Sidebar = ({ isAdminMode}: SideBarProps) => {
     const pathName = usePathname();
+    const links = isAdminMode ? adminSidebarLinks : userSidebarLinks
 
   return (
     <div className="hidden border-r bg-muted/40 md:block">
@@ -25,7 +21,7 @@ const Sidebar = () => {
       </div>
       <div className="flex-1">
         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-          {adminSidebarLinks.map (({label, icon, url}, i) => {
+          {links.map (({label, icon, url}, i) => {
             const Icon = icon;
             return (
                 <Link
@@ -41,23 +37,7 @@ const Sidebar = () => {
           
         </nav>
       </div>
-      <div className="mt-auto p-4">
-        <Card x-chunk="dashboard-02-chunk-0">
-          <CardHeader className="p-2 pt-0 md:p-4">
-            <CardTitle>Upgrade to Pro</CardTitle>
-            <CardDescription>
-              Unlock all features and get unlimited access to our support
-              team.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-            <Button size="sm" className="w-full">
-              Upgrade
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+   </div>
   </div>
   )
 }

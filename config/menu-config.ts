@@ -1,4 +1,4 @@
-import {House, CreditCard, Users } from "lucide-react";
+import {House, CreditCard, Users, Settings } from "lucide-react";
 
 export const adminSidebarLinks = [
     {
@@ -17,4 +17,23 @@ export const adminSidebarLinks = [
         url: "/admin/users"
     },
 
-]
+];
+
+export const userSidebarLinks = [
+    {
+        label: "Dashboard",
+        icon: House,
+        url: "/dashboard"
+    },
+    {
+        label: "Subscription",
+        icon: CreditCard,
+        url: "/dashboard/subscription"
+    },
+    {
+        label: "Settings",
+        icon: Settings,
+        url: "/dashboard/settings"
+    },
+
+];
